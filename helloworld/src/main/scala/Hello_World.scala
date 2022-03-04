@@ -5,9 +5,12 @@
 */
 import Console.{UNDERLINED,BOLD,RESET}
 import scala.util.matching.Regex
+import scala.io.StdIn.readLine
 object Hello_World {
   def main(args: Array[String]): Unit = {
     val obj = new HW1()
+    val sol = new Solution()
+    sol.run()
     //Running each method
     obj.q1()
     obj.q2()
@@ -114,5 +117,28 @@ class HW1{
   def q10(): Unit={
     q(10)
     for(i<- 100 until 111) println(i)
+  }
+}
+class Solution{
+  import scala.collection.mutable
+
+  def gcd(x: Long, y: Long): Long = {
+    if(y == 0) x else gcd(y, x % y)
+  }
+
+  def run() {
+    val n = readLine()
+    val distances = readLine().split(' ').map(_.toLong)
+
+    val arr = mutable.ArrayBuffer[Long](1)
+    //println(arr(0))
+    for (i <- 0 until distances.length) {
+      println(s"gcd: ${gcd(arr(0), distances(i))}")
+      println(s"distance: ${distances(i)}")
+      arr(0) = arr(0) / gcd(arr(0),distances(i)) * distances(i)
+      println(s"arr: ${arr(0)}")
+    }
+
+    println(s"Final number: ${arr(0)}")
   }
 }
