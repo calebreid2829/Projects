@@ -1,0 +1,17 @@
+{
+  "id": 0,
+  "name": "Jolyne",
+  "race": "Human",
+  "class": "Fighter",
+  "level": 5,
+  "alignment": "Chaotic Good",
+  "str": 16,
+  "dex": 12,
+  "con": 14,
+  "int": 11,
+  "wis": 7,
+  "char": 10,
+  "weapons": "Longsword",
+  "armor": "Chainmail",
+  "ac": "16"
+}
