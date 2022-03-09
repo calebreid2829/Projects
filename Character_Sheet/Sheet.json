@@ -5,13 +5,16 @@
   "class": "Fighter",
   "level": 5,
   "alignment": "Chaotic Good",
+  "hp": 26,
+  "hitDice": "3d6",
+  "speed": 30,
   "str": 16,
   "dex": 12,
   "con": 14,
   "int": 11,
   "wis": 7,
   "char": 10,
-  "weapons": "Longsword",
+  "weapon": "Longsword",
   "armor": "Chainmail",
-  "ac": "16"
+  "ac": 16
 }
