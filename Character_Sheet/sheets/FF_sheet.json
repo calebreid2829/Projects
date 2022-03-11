@@ -1,0 +1,20 @@
+{
+"dex": 18,
+"name": "FF",
+"con": 12,
+"char": 19,
+"str": 10,
+"id": 1,
+"ac": 14,
+"raceid": "Plankton",
+"int": 12,
+"alignment": "Chaotic Neutral",
+"wis": 16,
+"classid": "Ranger",
+"weaponid": "Longsword",
+"hp": 26,
+"armorid": "Chainmail",
+"hitDice": "3d6",
+"speed": 30,
+"level": 6
+}

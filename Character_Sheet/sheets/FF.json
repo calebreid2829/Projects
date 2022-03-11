@@ -1,0 +1,20 @@
+{
+"dex": 18,
+"name": "FF",
+"con": 12,
+"armorid": "studded",
+"raceid": "Stand",
+"char": 19,
+"classid": "Ranger",
+"str": 10,
+"weaponid": "Longsword",
+"id": 1,
+"ac": 14,
+"int": 12,
+"alignment": "Chaotic Neutral",
+"wis": 16,
+"hp": 26,
+"hitDice": "3d6",
+"speed": 30,
+"level": 6
+}

@@ -40,7 +40,7 @@ class InsertRow {
     val connection = db.Open()
     val statement = connection.createStatement()
     if(race !="quit") {
-      val query = insert("race","race",race)
+      val query = insert("races","race",race)
       try {
         statement.executeUpdate(query)
         println("Race inserted successfully")

@@ -1,0 +1,9 @@
+[debug] > Exec(all {file:/D:/Programming/Projects/Work/Character_Sheet/}character_sheet/products {file:/D:/Programming/Projects/Work/Character_Sheet/}character_sheet/test:products, None, None)
+[debug] Evaluating tasks: Compile / products, Test / products
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[info] compiling 1 Scala source to D:\Programming\Projects\Work\Character_Sheet\target\scala-2.12\classes ...
+[info] done compiling
+[success] Total time: 5 s, completed Mar 10, 2022 3:47:40 PM
+[debug] > Exec(idea-shell, None, None)
+[debug] > Exec(, None, None)
+[debug] > Exec(idea-shell, None, None)

@@ -1,0 +1,19 @@
+{
+"dex": 14,
+"name": "Weather Report",
+"con": 10,
+"char": 20,
+"str": 16,
+"ac": 14,
+"raceid": "Human",
+"int": 10,
+"alignment": "True Neutral",
+"wis": 6,
+"classid": "Monk",
+"weaponid": "Fists",
+"hp": 24,
+"armorid": "None",
+"hitDice": "5d10",
+"speed": 50,
+"level": 5
+}

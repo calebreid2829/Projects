@@ -1,0 +1,20 @@
+{
+"dex": 12,
+"name": "Jolyne",
+"con": 14,
+"char": 10,
+"str": 16,
+"id": 0,
+"ac": 16,
+"raceid": "Human",
+"int": 11,
+"alignment": "Chaotic Good",
+"wis": 7,
+"classid": "Fighter",
+"weaponid": "Longsword",
+"hp": 26,
+"armorid": "Chainmail",
+"hitDice": "3d6",
+"speed": 30,
+"level": 5
+}
