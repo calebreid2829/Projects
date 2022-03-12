@@ -41,7 +41,7 @@ object CharacterSheet {
           if (splitLine(1) == "race")do print("Insert Race Name: ")while(insert.Race(readLine()))
           else if (splitLine(1) == "item")do print("Insert Item Name, Cost, and Weight: ")while(insert.Item(readLine()))
           else if (splitLine(1) == "class")do print("Insert Class Name: ")while(insert.Class(readLine()))
-          else if (splitLine(1) == "armor")do print("Insert Armor Type,name,Cost,AC,Strength,Stealth Disadvantage, And Weight: ")while(insert.Armor(readLine()))
+          else if (splitLine(1) == "armor")do print("Insert Armor Type,name,Cost,AC,Strength,Stealth Disadvantage, And Weight: ")while(insert.Armor(readLine()) != -1)
         }
         else if (splitLine(0) == "show") {
           if(splitLine(1) == "items")showItems()
@@ -65,7 +65,8 @@ object CharacterSheet {
   }
   def showSheet(p:Map[String,String]): Unit={
 
-
+    val arm = select.SelectOne("armor",p("armorid"))
+    val wep = select.SelectOne("weapons",p("weaponid"))
     print(s"\n ${p("name")}  |  Level ${p("level")} ${p("raceid")} ${p("classid")}  |  ${p("alignment")}")
     print(s"\n HP ${p("hp")}  |  Hit Dice ${p("hitDice")}  |  Death Save - Success[][][] - Failure[][][]")
     print(s"\n AC ${p("ac")}  |  Initiative ${getBonus(p("dex"))}  |  Speed ${p("speed")}")
@@ -75,7 +76,8 @@ object CharacterSheet {
     print(s"\n Intelligence ${p("int")}[${getBonus(p("int"))}]|  Arcana - History - Investigation - Nature - Religion")
     print(s"\n Wisdom ${p("wis")}[${getBonus(p("wis"))}]\t\t|  Animal Handling - Insight - Medicine - Perception - Survival")
     print(s"\n Charisma ${p("char")}[${getBonus(p("char"))}]\t|  Deception - Intimidation - Performance - Persuasion")
-    print(s"\n Armor: ${p("armorid")} \n")
+    print(s"\n Armor: ${arm}")
+    print(s"\n Weapon: ${wep}\n")
   }
   def showOptions(): Unit={
     print("--Commands--")
@@ -132,13 +134,14 @@ object CharacterSheet {
   def chooseSheet(): String={
     val files = getListOfFiles("sheets")
     //files.foreach(x => println(x))
-    var sht = ""
+    var sheet = ""
     do {
-      for (x <- 0 until files.length) println(s"[$x] ${files(x)}")
-      try{sht = files(readLine().toInt).toString}
+      val r = new Regex(raw"sheets\\\\K[^.]+")
+      for (x <- 0 until files.length) println(s"[$x] ${files(x).toString.split(raw"sheets\\").mkString("").split(raw"\.json").mkString("")}")
+      try{sheet = files(readLine().toInt).toString}
       catch{ case _: Any => println("Choose only a listed file")}
-    }while(sht == "")
-    sht
+    }while(sheet == "")
+    sheet
   }
   def editSheet(character:Map[String,String]): Unit={
     var p = character
@@ -160,7 +163,7 @@ object CharacterSheet {
           catch {case _: NumberFormatException => println ("Make sure you are inputting a number")}
         case "raceid"|"classid" => p = changeRaceClass(line,p)
           //if(line == "races")
-        case "weapons" =>
+        case "weaponid" => p = changeWeapon(line,p)
         case "armorid" => p = changeArmor(line,p)
         case _ =>
       }
@@ -178,6 +181,10 @@ object CharacterSheet {
       character= changeRaceClass(statNames("race"),character)
       println("Class: ")
       character = changeRaceClass(statNames("class"),character)
+      println("Level: ");character += ("level" ->readLine())
+      println("Armor: ");character = changeArmor(statNames("armor"),character)
+      println("Weapon: ");character = changeWeapon(statNames("weapon"),character)
+      println(character)
       /*p("Name")
       p("Race")
       p("Class")
@@ -215,7 +222,7 @@ object CharacterSheet {
     case "wisdom" => "wis"
     case "intelligence" => "int"
     case "charisma" => "char"
-    case "weapon" => "weapons"
+    case "weapon" => "weaponid"
     case "armor" => "armorid"
     case "class" => "classid"
     case "race" => "raceid"
@@ -239,11 +246,59 @@ object CharacterSheet {
   def changeArmor(line: String,character: Map[String,String]): Map[String,String]={
     var p = character
     val list = select.SelectArmor(line)
-    list.foreach(x =>println(s"[${x._1}] type: ${x._2+" "+x._3} cost: ${x._4} ac: ${x._5} strength: ${x._6} " +
-      s"stealth_disadvantage: ${x._7} weight: ${x._8}"))
+    list.foreach(x =>println(s"[${x._1}] ${x._2+"-"+x._3} | ${x._4}gp | ${x._5} AC\n\tStrength Required: ${x._6} |" +
+      s"${if(x._7 == 1)"Stealth Disadvantage |"else ""} weight: ${x._8}\n"))
+    println("Or [Add] new armor")
     val num = readLine().toLowerCase
-    var i = true; list.foreach(x => if(x._1 == numCheck(num)){i = false; p = (p-line)+(line->x._3.toString)})
-    //if(i) p = (p-line)+(line->)
+    if(num == "add") {
+      var statement = ""
+      val red = () => readLine().capitalize + ","
+      print("Type [Light,Medium,Heavy]: ");statement+=red()
+      print("Name: "); statement+=red()
+      print("Price: "); statement+=red()
+      print("AC: "); statement+=red()
+      print("Required Strength: ");statement+=red()
+      print("Stealth Disadvantage [1] yes [0] no: ");statement+=red()
+      print("Weight: "); statement+=readLine().capitalize
+      //println(statement)
+      //if(statement.contains("quit"))statement = "quit"
+      val id = insert.Armor(statement)
+      if(id != -1) p = (p-line) + (line ->id.toString)
+    }
+    else {
+      var i = true
+      list.foreach(x => if (x._1 == numCheck(num)) {i=false;p=(p-line)+(line->x._1.toString)})
+      if(i){list.foreach(x=>if(num==x._3.toLowerCase){p=(p-line)+(line->x._1.toString)})
+      }
+    }
+    p
+  }
+  def changeWeapon(line: String,character: Map[String,String]): Map[String,String]={
+    var p = character
+    val list = select.SelectWeapon()
+    list.foreach(x =>println(s"[${x._1}] ${x._2} | ${if(x._3 ==0)"Simple"else "Martial"} | ${if(x._4 ==0)"Melee"else "Ranged"}" +
+      s"\n\t${x._5} ${x._6} Damage | Weight: ${x._7} | Price: ${x._8} | ${if(x._9 != "")"Properties: "+x._9 else ""}\n"))
+    println("Or [Add] new weapon")
+    val num = readLine().toLowerCase
+    if(num == "add"){
+      var statement = ""
+      val red = () => readLine().capitalize + ","
+      print("Name: ");statement+=red()
+      print("[1]Simple [2]Martial: ");statement+=red()
+      print("[1]Melee [2]Ranged: ");statement+=red()
+      print("Damage: ");statement+=red()
+      print("Damage Type: ");statement+=red()
+      print("Weight: ");statement+=red()
+      print("Cost: ");statement+=red()
+      print("Properties: ");statement+=readLine().capitalize
+      val id = insert.Weapon(statement)
+      if(id != -1)p=(p-line)+(line->id.toString)
+    }
+    else{
+      var i = true
+      list.foreach(x => if(x._1 == numCheck(num)){i=false;p=(p-line)+(line->x._1.toString)})
+      if(i){list.foreach(x=>if(num==x._2){p=(p-line)+(line->x._1.toString)})}
+    }
     p
   }
 

@@ -10,9 +10,9 @@
 "alignment": "True Neutral",
 "wis": 6,
 "classid": "Monk",
-"weaponid": "Fists",
+"weaponid": "1",
 "hp": 24,
-"armorid": "None",
+"armorid": "1",
 "hitDice": "5d10",
 "speed": 50,
 "level": 5
