@@ -1,0 +1,170 @@
+[
+	{
+		"raceid" : 2,
+		"race" : "Human"
+	},
+	{
+		"raceid" : 5,
+		"race" : "Dwarf"
+	},
+	{
+		"raceid" : 6,
+		"race" : "Elf"
+	},
+	{
+		"raceid" : 7,
+		"race" : "Orc"
+	},
+	{
+		"raceid" : 8,
+		"race" : "Half-Elf"
+	},
+	{
+		"raceid" : 9,
+		"race" : "Half-Orc"
+	},
+	{
+		"raceid" : 10,
+		"race" : "Gnome"
+	},
+	{
+		"raceid" : 11,
+		"race" : "Halfling"
+	},
+	{
+		"raceid" : 12,
+		"race" : "Dragonborn"
+	},
+	{
+		"raceid" : 13,
+		"race" : "Tiefling"
+	},
+	{
+		"raceid" : 14,
+		"race" : "Fairy"
+	},
+	{
+		"raceid" : 15,
+		"race" : "Owlin"
+	},
+	{
+		"raceid" : 16,
+		"race" : "Aarakocra"
+	},
+	{
+		"raceid" : 17,
+		"race" : "Genasi"
+	},
+	{
+		"raceid" : 18,
+		"race" : "Goliath"
+	},
+	{
+		"raceid" : 19,
+		"race" : "Aasimar"
+	},
+	{
+		"raceid" : 20,
+		"race" : "Bugbear"
+	},
+	{
+		"raceid" : 21,
+		"race" : "Firbolg"
+	},
+	{
+		"raceid" : 22,
+		"race" : "Goblin"
+	},
+	{
+		"raceid" : 23,
+		"race" : "Hobgoblin"
+	},
+	{
+		"raceid" : 24,
+		"race" : "Kenku"
+	},
+	{
+		"raceid" : 25,
+		"race" : "Kobold"
+	},
+	{
+		"raceid" : 26,
+		"race" : "Lizardfolk"
+	},
+	{
+		"raceid" : 27,
+		"race" : "Tabaxi"
+	},
+	{
+		"raceid" : 28,
+		"race" : "Triton"
+	},
+	{
+		"raceid" : 29,
+		"race" : "Yuan-ti Pureblood"
+	},
+	{
+		"raceid" : 30,
+		"race" : "Feral Tiefling"
+	},
+	{
+		"raceid" : 31,
+		"race" : "Tortle"
+	},
+	{
+		"raceid" : 32,
+		"race" : "Changeling"
+	},
+	{
+		"raceid" : 33,
+		"race" : "Kalashtar"
+	},
+	{
+		"raceid" : 34,
+		"race" : "Orc of Eberron"
+	},
+	{
+		"raceid" : 35,
+		"race" : "Shifter"
+	},
+	{
+		"raceid" : 36,
+		"race" : "Warforged"
+	},
+	{
+		"raceid" : 37,
+		"race" : "Gith"
+	},
+	{
+		"raceid" : 38,
+		"race" : "Centaur"
+	},
+	{
+		"raceid" : 39,
+		"race" : "Loxodon"
+	},
+	{
+		"raceid" : 40,
+		"race" : "Minotaur"
+	},
+	{
+		"raceid" : 41,
+		"race" : "Simic Hybrid"
+	},
+	{
+		"raceid" : 42,
+		"race" : "Vedalken"
+	},
+	{
+		"raceid" : 44,
+		"race" : "Plankton"
+	},
+	{
+		"raceid" : 45,
+		"race" : "Stand"
+	},
+	{
+		"raceid" : 46,
+		"race" : "Trash Panda"
+	}
+]

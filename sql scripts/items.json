@@ -1,0 +1,590 @@
+[
+	{
+		"itemid" : 1,
+		"name" : "abacus",
+		"cost" : 2000,
+		"weight" : 2
+	},
+	{
+		"itemid" : 2,
+		"name" : "Acid (vial)",
+		"cost" : 25000,
+		"weight" : 1
+	},
+	{
+		"itemid" : 3,
+		"name" : "Alchemist's fire (flask)",
+		"cost" : 50000,
+		"weight" : 1
+	},
+	{
+		"itemid" : 4,
+		"name" : "Arrows (20)",
+		"cost" : 1000,
+		"weight" : 1
+	},
+	{
+		"itemid" : 5,
+		"name" : "Blowgun needles (50)",
+		"cost" : 1000,
+		"weight" : 1
+	},
+	{
+		"itemid" : 6,
+		"name" : "Crossbow bolts (20)",
+		"cost" : 1000,
+		"weight" : 1.5
+	},
+	{
+		"itemid" : 7,
+		"name" : "Sling bullets (20)",
+		"cost" : 4,
+		"weight" : 1.5
+	},
+	{
+		"itemid" : 8,
+		"name" : "Antitoxin (vial)",
+		"cost" : 50000,
+		"weight" : 0
+	},
+	{
+		"itemid" : 9,
+		"name" : "Crystal focus",
+		"cost" : 50000,
+		"weight" : 0
+	},
+	{
+		"itemid" : 10,
+		"name" : "Orb focus",
+		"cost" : 20000,
+		"weight" : 3
+	},
+	{
+		"itemid" : 11,
+		"name" : "Rod focus",
+		"cost" : 10000,
+		"weight" : 2
+	},
+	{
+		"itemid" : 12,
+		"name" : "Staff focus",
+		"cost" : 5000,
+		"weight" : 4
+	},
+	{
+		"itemid" : 13,
+		"name" : "Wand focus",
+		"cost" : 10000,
+		"weight" : 1
+	},
+	{
+		"itemid" : 14,
+		"name" : "Backpack",
+		"cost" : 2000,
+		"weight" : 5
+	},
+	{
+		"itemid" : 15,
+		"name" : "Ball bearings (bag of 1,000)",
+		"cost" : 1000,
+		"weight" : 2
+	},
+	{
+		"itemid" : 16,
+		"name" : "Barrel",
+		"cost" : 2000,
+		"weight" : 70
+	},
+	{
+		"itemid" : 17,
+		"name" : "Basket",
+		"cost" : 400,
+		"weight" : 2
+	},
+	{
+		"itemid" : 18,
+		"name" : "Bedroll",
+		"cost" : 1000,
+		"weight" : 7
+	},
+	{
+		"itemid" : 19,
+		"name" : "Bell",
+		"cost" : 1000,
+		"weight" : 0
+	},
+	{
+		"itemid" : 20,
+		"name" : "Blanket",
+		"cost" : 500,
+		"weight" : 3
+	},
+	{
+		"itemid" : 21,
+		"name" : "Block and tackle",
+		"cost" : 1000,
+		"weight" : 5
+	},
+	{
+		"itemid" : 22,
+		"name" : "Book",
+		"cost" : 25000,
+		"weight" : 5
+	},
+	{
+		"itemid" : 23,
+		"name" : "Bottle, glass",
+		"cost" : 2000,
+		"weight" : 2
+	},
+	{
+		"itemid" : 24,
+		"name" : "Bucket",
+		"cost" : 500,
+		"weight" : 2
+	},
+	{
+		"itemid" : 25,
+		"name" : "Caltrops (bag of 20)",
+		"cost" : 100,
+		"weight" : 2
+	},
+	{
+		"itemid" : 26,
+		"name" : "Candle",
+		"cost" : 1,
+		"weight" : 0
+	},
+	{
+		"itemid" : 27,
+		"name" : "Case, crossbow bolt",
+		"cost" : 100,
+		"weight" : 1
+	},
+	{
+		"itemid" : 28,
+		"name" : "Case, map or scroll",
+		"cost" : 100,
+		"weight" : 1
+	},
+	{
+		"itemid" : 29,
+		"name" : "Chain (10 feet)",
+		"cost" : 500,
+		"weight" : 10
+	},
+	{
+		"itemid" : 30,
+		"name" : "Chalk (1 piece)",
+		"cost" : 1,
+		"weight" : 0
+	},
+	{
+		"itemid" : 31,
+		"name" : "Chest",
+		"cost" : 500,
+		"weight" : 25
+	},
+	{
+		"itemid" : 32,
+		"name" : "Climber's kit",
+		"cost" : 25000,
+		"weight" : 12
+	},
+	{
+		"itemid" : 33,
+		"name" : "Clothes, common",
+		"cost" : 500,
+		"weight" : 3
+	},
+	{
+		"itemid" : 34,
+		"name" : "Clothes, costume",
+		"cost" : 5000,
+		"weight" : 4
+	},
+	{
+		"itemid" : 35,
+		"name" : "Clothes, fine",
+		"cost" : 15000,
+		"weight" : 6
+	},
+	{
+		"itemid" : 36,
+		"name" : "Clothes, traveler's",
+		"cost" : 2000,
+		"weight" : 4
+	},
+	{
+		"itemid" : 37,
+		"name" : "Component pouch",
+		"cost" : 25000,
+		"weight" : 2
+	},
+	{
+		"itemid" : 38,
+		"name" : "Crowbar",
+		"cost" : 2000,
+		"weight" : 5
+	},
+	{
+		"itemid" : 39,
+		"name" : "Sprig of mistletoe focus",
+		"cost" : 1000,
+		"weight" : 0
+	},
+	{
+		"itemid" : 40,
+		"name" : "Totem focus",
+		"cost" : 1000,
+		"weight" : 0
+	},
+	{
+		"itemid" : 41,
+		"name" : "Wooden staff focus",
+		"cost" : 5000,
+		"weight" : 4
+	},
+	{
+		"itemid" : 42,
+		"name" : "Yew wand focus",
+		"cost" : 10000,
+		"weight" : 1
+	},
+	{
+		"itemid" : 43,
+		"name" : "Fishing tackle",
+		"cost" : 1000,
+		"weight" : 4
+	},
+	{
+		"itemid" : 44,
+		"name" : "Flask or tankard",
+		"cost" : 2,
+		"weight" : 1
+	},
+	{
+		"itemid" : 45,
+		"name" : "Grappling hook",
+		"cost" : 2000,
+		"weight" : 4
+	},
+	{
+		"itemid" : 46,
+		"name" : "Hammer",
+		"cost" : 1000,
+		"weight" : 3
+	},
+	{
+		"itemid" : 47,
+		"name" : "Hammer,sledge",
+		"cost" : 2000,
+		"weight" : 10
+	},
+	{
+		"itemid" : 48,
+		"name" : "Healer's kit",
+		"cost" : 5000,
+		"weight" : 3
+	},
+	{
+		"itemid" : 49,
+		"name" : "Amulet",
+		"cost" : 5000,
+		"weight" : 1
+	},
+	{
+		"itemid" : 50,
+		"name" : "Emblem",
+		"cost" : 5000,
+		"weight" : 0
+	},
+	{
+		"itemid" : 51,
+		"name" : "Reliquary",
+		"cost" : 5000,
+		"weight" : 2
+	},
+	{
+		"itemid" : 52,
+		"name" : "Holy water (flask)",
+		"cost" : 25000,
+		"weight" : 1
+	},
+	{
+		"itemid" : 53,
+		"name" : "Hourglass",
+		"cost" : 25000,
+		"weight" : 1
+	},
+	{
+		"itemid" : 54,
+		"name" : "Hunting trap",
+		"cost" : 5000,
+		"weight" : 25
+	},
+	{
+		"itemid" : 55,
+		"name" : "Ink",
+		"cost" : 10000,
+		"weight" : 0
+	},
+	{
+		"itemid" : 56,
+		"name" : "Ink pen",
+		"cost" : 2,
+		"weight" : 0
+	},
+	{
+		"itemid" : 57,
+		"name" : "Jug or pitcher",
+		"cost" : 2,
+		"weight" : 4
+	},
+	{
+		"itemid" : 58,
+		"name" : "Ladder",
+		"cost" : 100,
+		"weight" : 25
+	},
+	{
+		"itemid" : 59,
+		"name" : "Lamp",
+		"cost" : 500,
+		"weight" : 1
+	},
+	{
+		"itemid" : 60,
+		"name" : "Lantern Bullseye",
+		"cost" : 10000,
+		"weight" : 2
+	},
+	{
+		"itemid" : 61,
+		"name" : "Lantern hooded",
+		"cost" : 5000,
+		"weight" : 2
+	},
+	{
+		"itemid" : 62,
+		"name" : "Lock",
+		"cost" : 10000,
+		"weight" : 1
+	},
+	{
+		"itemid" : 63,
+		"name" : "Magnifying glass",
+		"cost" : 100000,
+		"weight" : 0
+	},
+	{
+		"itemid" : 64,
+		"name" : "Manacles",
+		"cost" : 2000,
+		"weight" : 6
+	},
+	{
+		"itemid" : 65,
+		"name" : "Mess kit",
+		"cost" : 200,
+		"weight" : 6
+	},
+	{
+		"itemid" : 66,
+		"name" : "Mirror steel",
+		"cost" : 5000,
+		"weight" : 0.5
+	},
+	{
+		"itemid" : 67,
+		"name" : "Oil (flask)",
+		"cost" : 100,
+		"weight" : 1
+	},
+	{
+		"itemid" : 68,
+		"name" : "Paper (one sheet)",
+		"cost" : 200,
+		"weight" : 0
+	},
+	{
+		"itemid" : 69,
+		"name" : "Parchment (one sheet)",
+		"cost" : 100,
+		"weight" : 0
+	},
+	{
+		"itemid" : 70,
+		"name" : "Perfume (vial)",
+		"cost" : 5000,
+		"weight" : 0
+	},
+	{
+		"itemid" : 71,
+		"name" : "Pick (miner's)",
+		"cost" : 2000,
+		"weight" : 10
+	},
+	{
+		"itemid" : 72,
+		"name" : "Piton",
+		"cost" : 5,
+		"weight" : 0.25
+	},
+	{
+		"itemid" : 73,
+		"name" : "Poison basic (vial)",
+		"cost" : 100000,
+		"weight" : 0
+	},
+	{
+		"itemid" : 74,
+		"name" : "Pole",
+		"cost" : 5,
+		"weight" : 7
+	},
+	{
+		"itemid" : 75,
+		"name" : "Pot (iron)",
+		"cost" : 2000,
+		"weight" : 10
+	},
+	{
+		"itemid" : 76,
+		"name" : "Potion of healing",
+		"cost" : 50000,
+		"weight" : 0.5
+	},
+	{
+		"itemid" : 77,
+		"name" : "Pouch",
+		"cost" : 500,
+		"weight" : 1
+	},
+	{
+		"itemid" : 78,
+		"name" : "Quiver",
+		"cost" : 1000,
+		"weight" : 1
+	},
+	{
+		"itemid" : 79,
+		"name" : "Ram (portable)",
+		"cost" : 4000,
+		"weight" : 35
+	},
+	{
+		"itemid" : 80,
+		"name" : "Rations (one day)",
+		"cost" : 500,
+		"weight" : 2
+	},
+	{
+		"itemid" : 81,
+		"name" : "Robes",
+		"cost" : 1000,
+		"weight" : 4
+	},
+	{
+		"itemid" : 82,
+		"name" : "Rope hempen(fifty feet)",
+		"cost" : 1000,
+		"weight" : 10
+	},
+	{
+		"itemid" : 83,
+		"name" : "Rope silk (fifty feet)",
+		"cost" : 10000,
+		"weight" : 5
+	},
+	{
+		"itemid" : 84,
+		"name" : "Sack",
+		"cost" : 1,
+		"weight" : 0.5
+	},
+	{
+		"itemid" : 85,
+		"name" : "Scale (merchant's)",
+		"cost" : 5000,
+		"weight" : 3
+	},
+	{
+		"itemid" : 86,
+		"name" : "Sealing wax",
+		"cost" : 500,
+		"weight" : 0
+	},
+	{
+		"itemid" : 87,
+		"name" : "Shovel",
+		"cost" : 2000,
+		"weight" : 5
+	},
+	{
+		"itemid" : 88,
+		"name" : "Signal whistle",
+		"cost" : 5,
+		"weight" : 0
+	},
+	{
+		"itemid" : 89,
+		"name" : "Signet ring",
+		"cost" : 5000,
+		"weight" : 0
+	},
+	{
+		"itemid" : 90,
+		"name" : "Soap",
+		"cost" : 2,
+		"weight" : 0
+	},
+	{
+		"itemid" : 91,
+		"name" : "Spellbook",
+		"cost" : 50000,
+		"weight" : 3
+	},
+	{
+		"itemid" : 92,
+		"name" : "Spikes iron (ten)",
+		"cost" : 1000,
+		"weight" : 5
+	},
+	{
+		"itemid" : 93,
+		"name" : "Spyglass",
+		"cost" : 1000000,
+		"weight" : 1
+	},
+	{
+		"itemid" : 94,
+		"name" : "Tent(two-person)",
+		"cost" : 2000,
+		"weight" : 20
+	},
+	{
+		"itemid" : 95,
+		"name" : "Tinderbox",
+		"cost" : 500,
+		"weight" : 1
+	},
+	{
+		"itemid" : 96,
+		"name" : "Vial",
+		"cost" : 1000,
+		"weight" : 0
+	},
+	{
+		"itemid" : 97,
+		"name" : "Waterskin",
+		"cost" : 200,
+		"weight" : 5
+	},
+	{
+		"itemid" : 98,
+		"name" : "Whetstone",
+		"cost" : 1,
+		"weight" : 1
+	}
+]

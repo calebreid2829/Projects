@@ -16,6 +16,7 @@ class FileWriter {
       writer.println(s"${quotes(x)}: ${if (isString(character(x)) == 0) quotes(character(x)) else character(x)}${if(x != keys.last)","else ""}"))
     writer.println("}")
     writer.close()
+    println("Saved successfully")
 
   }
   def Write(p: Character): Unit={

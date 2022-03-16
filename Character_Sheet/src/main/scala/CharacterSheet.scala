@@ -14,7 +14,7 @@ object CharacterSheet {
   val delete = new DeleteRow()
   val readmy = () => {val a = readLine(); if(a.toLowerCase == "b") throw new Exception;else a}
   val numCheck = (x:String) => try{x.toInt}catch{case _: Any => -1}
-  val Jolyne = select.SelectCharacter(0)
+  //val Jolyne = select.SelectCharacter(0)
   //println(Jolyne.name)
   //Jolyne.name = "Jolyne Kujo"
   //println(Jolyne.name)
@@ -25,7 +25,7 @@ object CharacterSheet {
     var loop = true
       do {
         try {
-          println("What would you like to do?")
+          println("\nWhat would you like to do?")
           print("[1] Make a new sheet\n[2] Open an existing sheet\n[3] Browse the database\n[4] Exit to desktop\n")
           val line = readLine().toLowerCase
           line match {
@@ -149,15 +149,16 @@ object CharacterSheet {
     var p = character
     var loop = true
     val set = (name: String,value: String,c: Map[String,String]) =>{val b=(c-name)+(name->value);b}
+    val oldName = p("name")
       do {
         showSheet(p)
         println("What do you want to change?")
-        println("[S]ave\n[B]ack and Discard Changes\n[D]elete Character Sheet")
+        println("[S]ave\n[B]ack\n[D]elete Character Sheet")
         val line = statNames(readmy().toLowerCase)
         try {
         //Saves the file
         line match {
-          case "s" => writer.Write(p, s"sheets/${p("name")}.json"); loop = false;insert.CharacterUpload(p)
+          case "s" => writer.Delete(oldName);writer.Write(p, s"sheets/${p("name")}.json");loop = false;insert.CharacterUpload(p)
           //Discards any changes made by not saving anything
           case "b" => loop = false
           case "str" | "dex" | "con" | "wis" | "int" | "char" =>
@@ -172,12 +173,12 @@ object CharacterSheet {
           //if(line == "races")
           case "weaponid" => p = changeWeapon(line, p)
           case "armorid" => p = changeArmor(line, p)
-          case "name" => p = set("name", readmy(), p)
-          case "level" => p = set("level", numCheck(readmy()).toString, p)
-          case "alignment" => p = set("alignment", readmy(), p)
-          case "hp" => p = set("hp", numCheck(readmy()).toString, p)
-          case "hitdice" => p = set("hitdice", readmy(), p)
-          case "speed" => p = set("speed", numCheck(readmy()).toString, p)
+          case "name" => print("Name: ");p = set("name", readmy(), p)
+          case "level" => print("Level: ");p = set("level", numCheck(readmy()).toString, p)
+          case "alignment" => print("Alignment: ");p = set("alignment", readmy(), p)
+          case "hp" => print("HP: ");p = set("hp", numCheck(readmy()).toString, p)
+          case "hitdice" => print("Hit Dice: ");p = set("hitdice", readmy(), p)
+          case "speed" => print("Speed: ");p = set("speed", numCheck(readmy()).toString, p)
           case "d" =>
             println("Are you sure you want to delete this character?\n[Y]es\n[N]o")
             val line2 = readmy().toLowerCase
@@ -193,9 +194,8 @@ object CharacterSheet {
     try{
       var character = Map.empty[String, String]
       val p = (x: String) => {
-        val a = readLine()
-        if (a.toLowerCase == "b") throw new Exception()
-        else character = character + (x.toLowerCase -> a)
+        val a = readmy()
+        character = character + (x.toLowerCase -> a)
       }
       println("Name: ")
       p("name")
@@ -214,15 +214,33 @@ object CharacterSheet {
       print("HP: ");p("hp")
       print("Hit Dice: ");p("hitdice")
       print("Speed: ");p("speed")
-      println("Armor: ");
-      character = changeArmor(statNames("armor"), character)
-      println("Weapon: ");
-      character = changeWeapon(statNames("weapon"), character)
+      var loop = true
+      do {
+        try {
+          println("Armor: ");
+          character = changeArmor(statNames("armor"), character)
+          loop = false
+        }
+        catch{
+          case _: Exception =>
+        }
+      }while(loop)
+      loop = true
+      do {
+        try {
+          println("Weapon: ");
+          character = changeWeapon(statNames("weapon"), character)
+          loop = false
+        }
+        catch{
+          case _: Exception =>
+        }
+      }while(loop)
       character += ("characterid" -> select.SelectNewId("characters").toString)
       //character += ("ac"->10.toString)
       showSheet(character)
       print("[1] Save\n[2] Edit\n")
-      var loop = true
+      loop = true
       do {
         val line = readLine()
         if (line == "1") {

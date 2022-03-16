@@ -1,0 +1,52 @@
+[
+	{
+		"armorid" : 1,
+		"armor_type" : "Light",
+		"name" : "Padded",
+		"cost" : 5000,
+		"ac" : 11,
+		"strength" : 0,
+		"stealth_disadvantage" : 1,
+		"weight" : 8
+	},
+	{
+		"armorid" : 2,
+		"armor_type" : "Light",
+		"name" : "studded",
+		"cost" : 30,
+		"ac" : 10,
+		"strength" : 0,
+		"stealth_disadvantage" : 0,
+		"weight" : 7
+	},
+	{
+		"armorid" : 3,
+		"armor_type" : "Medium",
+		"name" : "Chainmail",
+		"cost" : 1500,
+		"ac" : 16,
+		"strength" : 14,
+		"stealth_disadvantage" : 1,
+		"weight" : 20
+	},
+	{
+		"armorid" : 4,
+		"armor_type" : "Light",
+		"name" : "None",
+		"cost" : 0,
+		"ac" : 10,
+		"strength" : 0,
+		"stealth_disadvantage" : 0,
+		"weight" : 0
+	},
+	{
+		"armorid" : 5,
+		"armor_type" : "Heavy",
+		"name" : "Super Armor",
+		"cost" : 99999,
+		"ac" : 40,
+		"strength" : 24,
+		"stealth_disadvantage" : 0,
+		"weight" : 0
+	}
+]

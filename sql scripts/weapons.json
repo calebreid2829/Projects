@@ -1,0 +1,68 @@
+[
+	{
+		"weaponid" : 1,
+		"name" : "sword",
+		"simple_martial" : 1,
+		"melee_ranged" : 0,
+		"damage" : "2d6",
+		"damage_type" : "slashing",
+		"weight" : 7,
+		"cost" : 10,
+		"properties" : ""
+	},
+	{
+		"weaponid" : 2,
+		"name" : "Longsword",
+		"simple_martial" : 1,
+		"melee_ranged" : 0,
+		"damage" : "2d8",
+		"damage_type" : "Slashing",
+		"weight" : 20,
+		"cost" : 175,
+		"properties" : ""
+	},
+	{
+		"weaponid" : 3,
+		"name" : "Club",
+		"simple_martial" : 1,
+		"melee_ranged" : 1,
+		"damage" : "1d4",
+		"damage_type" : "Bludgeoning",
+		"weight" : 2,
+		"cost" : 1,
+		"properties" : "Light"
+	},
+	{
+		"weaponid" : 4,
+		"name" : "Dagger",
+		"simple_martial" : 1,
+		"melee_ranged" : 1,
+		"damage" : "1d4",
+		"damage_type" : "Piercing",
+		"weight" : 1,
+		"cost" : 2,
+		"properties" : "Finesse Light Thrown (20/60)"
+	},
+	{
+		"weaponid" : 6,
+		"name" : "Brass Knuckles",
+		"simple_martial" : 1,
+		"melee_ranged" : 1,
+		"damage" : "1d6",
+		"damage_type" : "Bludgeoning",
+		"weight" : 5,
+		"cost" : 35,
+		"properties" : ""
+	},
+	{
+		"weaponid" : 7,
+		"name" : "test",
+		"simple_martial" : 2,
+		"melee_ranged" : 2,
+		"damage" : "1d2",
+		"damage_type" : "dull",
+		"weight" : 1,
+		"cost" : 2,
+		"properties" : "training"
+	}
+]

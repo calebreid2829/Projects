@@ -1,0 +1,62 @@
+[
+	{
+		"classid" : 1,
+		"class" : "Fighter"
+	},
+	{
+		"classid" : 3,
+		"class" : "Wizard"
+	},
+	{
+		"classid" : 4,
+		"class" : "Monk"
+	},
+	{
+		"classid" : 5,
+		"class" : "Paladin"
+	},
+	{
+		"classid" : 6,
+		"class" : "Druid"
+	},
+	{
+		"classid" : 7,
+		"class" : "Bard"
+	},
+	{
+		"classid" : 8,
+		"class" : "Barbarian"
+	},
+	{
+		"classid" : 9,
+		"class" : "Cleric"
+	},
+	{
+		"classid" : 10,
+		"class" : "Ranger"
+	},
+	{
+		"classid" : 11,
+		"class" : "Rogue"
+	},
+	{
+		"classid" : 12,
+		"class" : "Sorcerer"
+	},
+	{
+		"classid" : 13,
+		"class" : "Warlock"
+	},
+	{
+		"classid" : 14,
+		"class" : "Artificer"
+	},
+	{
+		"classid" : 15,
+		"class" : "stand user"
+	},
+	{
+		"classid" : 17,
+		"class" : "Group Mom"
+	}
+]
