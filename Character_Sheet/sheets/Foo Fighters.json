@@ -1,9 +1,9 @@
 {
 "characterid": 6,
 "name": Foo Fighters,
-"raceid": 44,
+"raceid": 2,
 "classid": 15,
-"level": 5,
+"level": 6,
 "alignment": Chaotic Neutral,
 "str": 10,
 "dex": 18,

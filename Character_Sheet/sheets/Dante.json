@@ -1,0 +1,20 @@
+{
+"characterid": 7,
+"name": Dante,
+"raceid": 48,
+"classid": 18,
+"level": 5,
+"alignment": Chaotic Good,
+"str": 5,
+"dex": 5,
+"con": 5,
+"int": 5,
+"wis": 5,
+"char": 5,
+"weaponid": 2,
+"armorid": 6,
+"ac": 18,
+"hp": 5,
+"hitdice": 5,
+"speed": 5
+}
