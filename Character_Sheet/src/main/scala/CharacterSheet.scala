@@ -1,10 +1,6 @@
 import java.io.File
-import scala.io.Source
-import scala.util.matching.Regex
 import scala.io.StdIn.readLine
-import scala.collection.mutable
 import scala.collection.immutable.ListMap
-
 object CharacterSheet {
   val db = new Database()
   val read = new FileReader()
@@ -12,7 +8,7 @@ object CharacterSheet {
   val select = new SelectRow()
   val insert = new InsertRow()
   val delete = new DeleteRow()
-  val readmy = () => {val a = readLine(); if(a.toLowerCase == "b") throw new Exception;else a}
+  val readln = () => ReadMy.readln()
   val numCheck = (x:String) => try{x.toInt}catch{case _: Any => -1}
   //val Jolyne = select.SelectCharacter(0)
   //println(Jolyne.name)
@@ -27,24 +23,23 @@ object CharacterSheet {
         try {
           println("\nWhat would you like to do?")
           print("[1] Make a new sheet\n[2] Open an existing sheet\n[3] Browse the database\n[4] Exit to desktop\n")
-          val line = readLine().toLowerCase
+          val line = ReadMy.readln()
           line match {
             case "1" => makeSheet()
-            case "2" => {
-              val sheet = chooseSheet();
+            case "2" =>
+              val sheet = chooseSheet()
               if (sheet != "back") {
                 do {
                   editSheet(read.read(sheet))
                 } while (loop)
               }
               loop = true
-            }
+
             case "3" =>
               do {
                 println("[1] Items\n[2] Weapons\n[3] Armor\n[4] Races\n[5] Classes\n[B]ack")
-                val line2 = numCheck(readmy()).toString
+                val line2 = numCheck(readln()).toString
                 try {
-                  try {
                     line2 match {
                       case "1"|"items" => Show("items")
                       case "2"|"weapons" => Show("weapons")
@@ -52,20 +47,21 @@ object CharacterSheet {
                       case "4"|"races" => Show("races")
                       case "5"|"classes" => Show("classes")
                     }
-                  }
-                  catch{case _: Exception =>}
                 }
-                catch {case _: Exception =>}
+                catch {case _: Back =>}
               } while (loop)
             case "4" => println("Are you sure?\n[Y]es\n[B]ack"); if (readLine.toLowerCase == "y") loop = false;
           }
         }
-        catch {case _: Exception =>}
+        catch {case _: Back =>}
       } while (loop)
     }
   def getBonus(stat: String): String={
     if(stat.toInt-10 < 0) math.floor((stat.toDouble-10)/2).toInt.toString
-    else "+" + ((math.floor((stat.toDouble-10)/2).toInt))
+    else "+" + math.floor((stat.toDouble-10)/2).toInt
+  }
+  def mainMenu():Unit={
+
   }
   def showSheet(p:Map[String,String]): Unit={
     val arm = select.SelectOne("armor",p("armorid"))
@@ -81,8 +77,8 @@ object CharacterSheet {
     print(s"\n Intelligence ${p("int")}[${getBonus(p("int"))}]|  Arcana - History - Investigation - Nature - Religion")
     print(s"\n Wisdom ${p("wis")}[${getBonus(p("wis"))}]\t\t|  Animal Handling - Insight - Medicine - Perception - Survival")
     print(s"\n Charisma ${p("char")}[${getBonus(p("char"))}]\t|  Deception - Intimidation - Performance - Persuasion")
-    print(s"\n Armor: ${arm}")
-    print(s"\n Weapon: ${wep}\n")
+    print(s"\n Armor: $arm")
+    print(s"\n Weapon: $wep\n")
   }
   def Show(toShow:String):Unit={
     toShow match{
@@ -108,7 +104,7 @@ object CharacterSheet {
         val resultSet = select.SelectMap("raceid")
         var num = 1
         println("|\t|\t|\t|\t|\t|\t|\t|\t|\t|\t|\t|\t|\t|\t|\t|\t|\t|")
-        ListMap(resultSet.toSeq.sortBy(_._1):_*).foreach(x =>{print(s"${if(x._1 <10)" ["+x._1 else "["+x._1}] ${Spacing(x._2.trim,5)}");
+        ListMap(resultSet.toSeq.sortBy(_._1):_*).foreach(x =>{print(s"${if(x._1 <10)" ["+x._1 else "["+x._1}] ${Spacing(x._2.trim,5)}")
           if(num%3 == 0)print("\n");num+=1;})
         if(num%3!=1)print("\n")
         println("|\t|\t|\t|\t|\t|\t|\t|\t|\t|\t|\t|\t|\t|\t|\t|\t|\t|")
@@ -117,14 +113,14 @@ object CharacterSheet {
         val resultSet = select.SelectMap("classid")
         var num = 1
         println("|\t|\t|\t|\t|\t|\t|\t|\t|\t|\t|\t|\t|\t|\t|\t|\t|\t|")
-        ListMap(resultSet.toSeq.sortBy(_._1):_*).foreach(x =>{print(s"${if(x._1 <10)" ["+x._1 else "["+x._1}] ${Spacing(x._2,5)}");
+        ListMap(resultSet.toSeq.sortBy(_._1):_*).foreach(x =>{print(s"${if(x._1 <10)" ["+x._1 else "["+x._1}] ${Spacing(x._2,5)}")
           if(num%3 == 0)print("\n");num+=1;})
         if(num%3!=1)print("\n")
         println("|\t|\t|\t|\t|\t|\t|\t|\t|\t|\t|\t|\t|\t|\t|\t|\t|\t|")
         println()
     }
     print("[A]dd\n[D]elete\n[B]ack\n")
-    val line = readmy()
+    val line = readln()
     if(line.toLowerCase == "a")Add(toShow)
     if(line.toLowerCase == "d")Delete(toShow)
   }
@@ -137,10 +133,10 @@ object CharacterSheet {
     //files.foreach(x => println(x))
     var sheet = ""
     do {
-      for (x <- 0 until files.length) println(s"[${x+1}] " +
+      for (x <- files.indices) println(s"[${x+1}] " +
         s"${files(x).toString.split(raw"sheets\\").mkString("").split(raw"\.json").mkString("")}")
       println("\n[B]ack")
-      val line = numCheck(readmy())
+      val line = numCheck(readln())
       if(line >= 1) try{sheet = files(line-1).toString}catch{ case _: Any => println("Choose only a listed file")}
     }while(sheet == "")
     sheet
@@ -154,7 +150,7 @@ object CharacterSheet {
         showSheet(p)
         println("What do you want to change?")
         println("[S]ave\n[B]ack\n[D]elete Character Sheet")
-        val line = statNames(readmy().toLowerCase)
+        val line = statNames(readln().toLowerCase)
         try {
         //Saves the file
         line match {
@@ -164,7 +160,7 @@ object CharacterSheet {
           case "str" | "dex" | "con" | "wis" | "int" | "char" =>
             print(s"Old Value: ${p(line)}\nNew Value: ")
             try {
-              p = set(line, numCheck(readmy()).toString, p)
+              p = set(line, numCheck(readln()).toString, p)
             }
             catch {
               case _: NumberFormatException => println("Make sure you are inputting a number")
@@ -173,28 +169,28 @@ object CharacterSheet {
           //if(line == "races")
           case "weaponid" => p = changeWeapon(line, p)
           case "armorid" => p = changeArmor(line, p)
-          case "name" => print("Name: ");p = set("name", readmy(), p)
-          case "level" => print("Level: ");p = set("level", numCheck(readmy()).toString, p)
-          case "alignment" => print("Alignment: ");p = set("alignment", readmy(), p)
-          case "hp" => print("HP: ");p = set("hp", numCheck(readmy()).toString, p)
-          case "hitdice" => print("Hit Dice: ");p = set("hitdice", readmy(), p)
-          case "speed" => print("Speed: ");p = set("speed", numCheck(readmy()).toString, p)
+          case "name" => print("Name: ");p = set("name", readln(), p)
+          case "level" => print("Level: ");p = set("level", numCheck(readln()).toString, p)
+          case "alignment" => print("Alignment: ");p = set("alignment", readln(), p)
+          case "hp" => print("HP: ");p = set("hp", numCheck(readln()).toString, p)
+          case "hitdice" => print("Hit Dice: ");p = set("hitdice", readln(), p)
+          case "speed" => print("Speed: ");p = set("speed", numCheck(readln()).toString, p)
           case "d" =>
             println("Are you sure you want to delete this character?\n[Y]es\n[N]o")
-            val line2 = readmy().toLowerCase
+            val line2 = readln().toLowerCase
             if(line2 == "y") delete.Delete("characters",p("characterid").toInt)
             loop = false
           case _ =>
         }
         }
-        catch{case _: Exception =>loop = false}
+        catch{case _: Back =>loop = false}
       } while (loop)
   }
   def makeSheet(): Unit= {
     try{
       var character = Map.empty[String, String]
       val p = (x: String) => {
-        val a = readmy()
+        val a = readln()
         character = character + (x.toLowerCase -> a)
       }
       println("Name: ")
@@ -217,23 +213,23 @@ object CharacterSheet {
       var loop = true
       do {
         try {
-          println("Armor: ");
+          println("Armor: ")
           character = changeArmor(statNames("armor"), character)
           loop = false
         }
         catch{
-          case _: Exception =>
+          case _: Back =>
         }
       }while(loop)
       loop = true
       do {
         try {
-          println("Weapon: ");
+          println("Weapon: ")
           character = changeWeapon(statNames("weapon"), character)
           loop = false
         }
         catch{
-          case _: Exception =>
+          case _: Back =>
         }
       }while(loop)
       character += ("characterid" -> select.SelectNewId("characters").toString)
@@ -244,16 +240,16 @@ object CharacterSheet {
       do {
         val line = readLine()
         if (line == "1") {
-          writer.Write(character, s"sheets/${character("name")}.json");
-          insert.CharacterUpload(character);
+          writer.Write(character, s"sheets/${character("name")}.json")
+          insert.CharacterUpload(character)
           loop = false
         }
-        else if (line == "2") editSheet(character);
+        else if (line == "2") editSheet(character)
         loop = false
       } while (loop)
     }
     catch{
-      case _: Exception =>
+      case _: Back =>
     }
   }
   def statNames(x: String): String = x match{
@@ -278,19 +274,19 @@ object CharacterSheet {
     var loop = true
     do {
       ListMap(resultSet.toSeq.sortBy(_._1): _*).foreach(x => {
-        print(s"${if (x._1 < 10) " [" + x._1 else "[" + x._1}] ${Spacing(x._2.trim, 5)}");
-        if (count % 3 == 0) print("\n");
-        count += 1;
+        print(s"${if (x._1 < 10) " [" + x._1 else "[" + x._1}] ${Spacing(x._2.trim, 5)}")
+        if (count % 3 == 0) print("\n")
+        count += 1
       })
       if (count % 3 != 1) print("\n")
       println("|\t|\t|\t|\t|\t|\t|\t|\t|\t|\t|\t|\t|\t|\t|\t|\t|\t|")
-      val num = readmy().toLowerCase
+      val num = readln().toLowerCase
       if (resultSet.contains(numCheck(num))){ p = (p - line) + (line -> num); loop = false}
       else {
-        var i = true;
+        var i = true
         resultSet.foreach(x => if (num == x._2.toLowerCase) {
-          i = false;
-          p = (p - line) + (line -> x._1.toString);
+          i = false
+          p = (p - line) + (line -> x._1.toString)
           loop = false
         })
         if (i) {
@@ -299,13 +295,13 @@ object CharacterSheet {
           if (readLine() == "y") {
             loop = false
             if (line == "raceid") {
-              insert.Race(num);
+              insert.Race(num)
               id = select.SelectNewId("races")
             }
             else {
               id = select.SelectNewId("classes")
-            };
-            insert.Class(num);
+            }
+            insert.Class(num)
             p = (p - line) + (line -> num)
           }
         }
@@ -324,28 +320,28 @@ object CharacterSheet {
       list.foreach(x => println(s"[${x._1}] ${x._2 + "-" + x._3} | ${x._4}gp | ${x._5} AC\n\tStrength Required: ${x._6} |" +
         s"${if (x._7 == 1) "Stealth Disadvantage |" else ""} weight: ${x._8}\n"))
       println("[A]dd\n[B]ack")
-      val num = readmy().toLowerCase
+      val num = readln().toLowerCase
       if (num == "a") {
         var statement = ""
         val red = () => {
-          readmy()+","
+          readln()+","
         }
-        print("Type [Light,Medium,Heavy]: ");
+        print("Type [Light,Medium,Heavy]: ")
         statement += red()
-        print("Name: ");
+        print("Name: ")
         statement += red()
-        print("Price: ");
+        print("Price: ")
         statement += red()
-        print("AC: ");
-        val ac = readLine();
+        print("AC: ")
+        val ac = readLine()
         statement += ac + ","
-        print("Required Strength: ");
+        print("Required Strength: ")
         statement += red()
-        print("Stealth Disadvantage [1] yes [0] no: ");
+        print("Stealth Disadvantage [1] yes [0] no: ")
         statement += red()
-        print("Weight: ");
+        print("Weight: ")
         val a = readLine()
-        if (a == "b") throw new Exception
+        if (a == "b") throw new Back
         else statement += a.capitalize
         val id = insert.Armor(statement)
         if (id != -1){ p = update(p, line, id.toString);p = update(p, "ac", ac);loop = false}
@@ -353,14 +349,14 @@ object CharacterSheet {
       else {
         var i = true
         list.foreach(x => if (x._1 == numCheck(num)) {
-          i = false;
-          p = update(p, line, x._1.toString);
+          i = false
+          p = update(p, line, x._1.toString)
           p = update(p, "ac", x._5.toString)
           loop = false
         })
         if (i) {
           list.foreach(x => if (num == x._3.toLowerCase) {
-            p = update(p, line, x._1.toString);
+            p = update(p, line, x._1.toString)
             p = update(p, "ac", x._5.toString)
             loop = false
           })
@@ -380,27 +376,27 @@ object CharacterSheet {
       s"\n\t${x._5} ${x._6} Damage | Weight: ${x._7} | Price: ${x._8} | ${if(x._9 != "")"Properties: "+x._9 else ""}\n"))
     println("[A]dd\n[B]ack")
     do {
-      val num = readmy().toLowerCase
+      val num = readln().toLowerCase
       if (num == "a") {
         var statement = ""
-        val red = () => {val a = readLine(); if(a =="b") throw new Exception; else a + ","}
-        print("Name: ");
+        val red = () => {val a = readLine(); if(a =="b") throw new Back; else a + ","}
+        print("Name: ")
         statement += red()
-        print("[1]Simple [2]Martial: ");
+        print("[1]Simple [2]Martial: ")
         statement += red()
-        print("[1]Melee [2]Ranged: ");
+        print("[1]Melee [2]Ranged: ")
         statement += red()
-        print("Damage: ");
+        print("Damage: ")
         statement += red()
-        print("Damage Type: ");
+        print("Damage Type: ")
         statement += red()
-        print("Weight: ");
+        print("Weight: ")
         statement += red()
-        print("Cost: ");
+        print("Cost: ")
         statement += red()
-        print("Properties: ");
+        print("Properties: ")
         val a = readLine()
-        if(a=="b") throw new Exception
+        if(a=="b") throw new Back
         else statement +=a.capitalize
         println(statement)
         val id = insert.Weapon(statement)
@@ -437,46 +433,46 @@ object CharacterSheet {
     toAdd match{
       case "items" =>
         var statement =""
-        print("Name: ");statement+=readmy()+","
-        print("Price: ");statement+=readmy()+","
-        print("Weight: ");statement+=readmy()
+        print("Name: ");statement+=readln()+","
+        print("Price: ");statement+=readln()+","
+        print("Weight: ");statement+=readln()
         insert.Item(statement)
       case "weapons" =>
         var statement =""
         print("")
-        print("Name: ");statement+=readmy()+","
-        print("[1]Simple [2]Martial: ");statement+=readmy()+","
-        print("[1]Melee [2]Ranged: ");statement+=readmy()+","
-        print("Damage: ");statement+=readmy()+","
-        print("Damage Type: ");statement+=readmy()+","
-        print("Weight: ");statement+=readmy()+","
-        print("Cost: ");statement+=readmy()+","
-        print("Properties: ");statement+=readmy()
+        print("Name: ");statement+=readln()+","
+        print("[1]Simple [2]Martial: ");statement+=readln()+","
+        print("[1]Melee [2]Ranged: ");statement+=readln()+","
+        print("Damage: ");statement+=readln()+","
+        print("Damage Type: ");statement+=readln()+","
+        print("Weight: ");statement+=readln()+","
+        print("Cost: ");statement+=readln()+","
+        print("Properties: ");statement+=readln()
         insert.Weapon(statement)
       case "armor"=>
         var statement=""
-        print("Type [Light,Medium,Heavy]: ");statement+=readmy()+","
-        print("Name: "); statement+=readmy()+","
-        print("Price: "); statement+=readmy()+","
-        print("AC: "); statement+=readmy()+","
-        print("Required Strength: ");statement+=readmy()+","
-        print("Stealth Disadvantage [1] yes [0] no: ");statement+=readmy()+","
-        print("Weight: ");statement+=readmy()
+        print("Type [Light,Medium,Heavy]: ");statement+=readln()+","
+        print("Name: "); statement+=readln()+","
+        print("Price: "); statement+=readln()+","
+        print("AC: "); statement+=readln()+","
+        print("Required Strength: ");statement+=readln()+","
+        print("Stealth Disadvantage [1] yes [0] no: ");statement+=readln()+","
+        print("Weight: ");statement+=readln()
         insert.Armor(statement)
       case "races" =>
-        print("Race: ");insert.Race(readmy())
+        print("Race: ");insert.Race(readln())
       case "classes" =>
-        print("Class: ");insert.Class(readmy())
+        print("Class: ");insert.Class(readln())
     }
   }
   def Delete(toDelete:String):Unit={
     println("Type the [id] number for the entry you wish to delete")
-    val line = numCheck(readmy())
+    val line = numCheck(readln())
     val entry = select.SelectOne(toDelete,line.toString)
     println(entry)
     if(entry!= "Entry does not exist") {
       println("Are you sure you want to delete this entry?\n[Y]es\n[N]o")
-      if (readmy().toLowerCase == "y") delete.Delete(toDelete, line)
+      if (readln().toLowerCase == "y") delete.Delete(toDelete, line)
     }
   }
 }
