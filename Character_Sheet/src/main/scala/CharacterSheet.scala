@@ -57,7 +57,7 @@ object CharacterSheet {
                 }
                 catch {case _: Exception =>}
               } while (loop)
-            case "4" => println("Are you sure?\n[y]es"); if (readLine == "y") loop = false;
+            case "4" => println("Are you sure?\n[Y]es\n[B]ack"); if (readLine.toLowerCase == "y") loop = false;
           }
         }
         catch {case _: Exception =>}
@@ -328,7 +328,7 @@ object CharacterSheet {
       if (num == "a") {
         var statement = ""
         val red = () => {
-          val a = readmy();a+","
+          readmy()+","
         }
         print("Type [Light,Medium,Heavy]: ");
         statement += red()
@@ -348,7 +348,7 @@ object CharacterSheet {
         if (a == "b") throw new Exception
         else statement += a.capitalize
         val id = insert.Armor(statement)
-        if (id != -1) p = update(p, line, id.toString);p = update(p, "ac", ac);loop = false
+        if (id != -1){ p = update(p, line, id.toString);p = update(p, "ac", ac);loop = false}
       }
       else {
         var i = true
