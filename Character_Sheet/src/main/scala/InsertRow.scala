@@ -1,12 +1,15 @@
 import java.sql.{ResultSet, SQLIntegrityConstraintViolationException}
 import scala.util.matching.Regex
+import java.io.File
 
 class InsertRow {
   val db = new Database()
   val quotes = (x:String) => "\""+x+"\""
   val i =(x:String) => x match{case "races"=>"raceid"case "classes"=>"classid"case "armor"=>"armorid"case "weapons"=>"weaponid"}
   val insert = (table: String,parameters: String,values: String) =>
-      s"INSERT INTO $table ($parameters) VALUES (${values.replaceAll("[^0-9,.]+", (for(x<-values.split(",") if x.compare("[^0-9,]+".r.findFirstMatchIn(x).mkString("")) == 0) yield ("\""+x+"\"")).mkString(","))}) "
+      s"INSERT INTO $table ($parameters) VALUES (${values.replaceAll("[^0-9,.]+",
+        (for(x<-values.split(",") if x.compare("[^0-9,]+".r.findFirstMatchIn(x).mkString("")) == 0)
+          yield ("\""+x+"\"")).mkString(","))}) "
   val max = (x: String) => {val c = db.Open();val s = c.createStatement();
     val r = s.executeQuery(s"SELECT MAX(${i(x)}) FROM " + x);
     r.next();val a = r.getInt(1);db.Close(c);a}
@@ -85,7 +88,6 @@ class InsertRow {
     val values = armor.split(",")
     val query = s"INSERT INTO armor (armor_type,name,cost,ac,strength,stealth_disadvantage,weight) " +
       s"VALUES (${quotes(values(0))},${quotes(values(1))},${values(2)},${values(3)},${values(4)},${values(5)},${values(6)})"
-    println(query)
     if(armor !="quit"){
       try{
         statement.executeUpdate(query)
@@ -108,7 +110,7 @@ class InsertRow {
     val values = weapon.split(",")
     val query = s"INSERT INTO weapons (name,simple_martial,melee_ranged,damage,damage_type,weight,cost,properties)" +
       s"VALUES (${quotes(values(0))},${values(1)},${values(2)},${quotes(values(3))},${quotes(values(4))},${values(5)}," +
-      s"${values(6)},${quotes(values(7))})"
+      s"${values(6)},${if(values.length ==(7))quotes("") else quotes(values(7))})"
     if(weapon != "quit"){
       try{
         s.executeUpdate(query)
@@ -123,5 +125,34 @@ class InsertRow {
         db.Close(c)
       }
     }else -1
+  }
+  def CharacterUpload(p: Map[String,String]): Unit={
+    val c = db.Open()
+    val s = c.createStatement()
+    try{
+      val query ="INSERT INTO characters " +
+        s"VALUES (${p("characterid")},${quotes(p("name"))},${p("raceid")},${p("classid")},${p("level")},${quotes(p("alignment"))}" +
+        s",${p("str")},${p("dex")},${p("con")},${p("int")},${p("wis")},${p("char")},${p("weaponid")},${p("armorid")}" +
+        s",${p("ac")},${p("hp")},${quotes(p("hitdice"))},${p("speed")});"
+      s.executeUpdate(query)
+      println("Character successfully uploaded")
+      db.Close(c)
+    }
+    catch{
+      case _: SQLIntegrityConstraintViolationException =>
+        db.Close(c)
+        val c2 = db.Open()
+        val query =s"UPDATE characters SET name = ${quotes(p("name"))},alignment=${quotes(p("alignment"))}" +
+          s",hitdice=${quotes(p("hitdice"))},raceid=${p("raceid")},classid=${p("classid")},level=${p("level")}" +
+          s",str=${p("str")},dex=${p("dex")},con=${p("con")},characters.int=${p("int")},wis=${p("wis")},characters.char=${p("char")}" +
+          s",weaponid=${p("weaponid")},armorid=${p("armorid")},ac=${p("ac")},hp=${p("hp")}" +
+          s",speed=${p("speed")} WHERE characterid=${p("characterid")};"
+        val s2 = c2.createStatement()
+        s2.executeUpdate(query)
+        db.Close(c2)
+    }
+    finally{
+      db.Close(c)
+    }
   }
 }

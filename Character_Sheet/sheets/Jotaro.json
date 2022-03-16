@@ -1,0 +1,20 @@
+{
+"characterid": 4,
+"name": Jotaro,
+"raceid": 2,
+"classid": 1,
+"level": 10,
+"alignment": Chaotic Good,
+"str": 18,
+"dex": 16,
+"con": 18,
+"int": 14,
+"wis": 12,
+"char": 10,
+"weaponid": 1,
+"armorid": 4,
+"ac": 10,
+"hp": 40,
+"hitdice": 10d6,
+"speed": 30
+}

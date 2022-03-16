@@ -1,0 +1,20 @@
+{
+"characterid": 5,
+"name": Deku,
+"raceid": 2,
+"classid": 1,
+"level": 5,
+"alignment": Lawful Good,
+"str": 18,
+"dex": 16,
+"con": 16,
+"int": 12,
+"wis": 12,
+"char": 10,
+"weaponid": 1,
+"armorid": 4,
+"ac": 10,
+"hp": 20,
+"hitdice": 5d8,
+"speed": 40
+}

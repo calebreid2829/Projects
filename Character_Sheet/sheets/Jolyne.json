@@ -1,0 +1,20 @@
+{
+"characterid": 0,
+"name": Jolyne,
+"raceid": 2,
+"classid": 1,
+"level": 5,
+"alignment": Chaotic Good,
+"str": 16,
+"dex": 12,
+"con": 14,
+"int": 11,
+"wis": 7,
+"char": 10,
+"weaponid": 1,
+"armorid": 2,
+"ac": 16,
+"hp": 26,
+"hitdice": 3d6,
+"speed": 30
+}
